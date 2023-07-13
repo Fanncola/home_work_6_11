@@ -1,0 +1,3 @@
+allure-pytest
+pytest
+selene==2.0.0rc2
