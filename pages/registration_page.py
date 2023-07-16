@@ -14,6 +14,8 @@ class RegistrationPage:
     @staticmethod
     def open():
         browser.open('/automation-practice-form')
+        browser.driver.execute_script("$('footer').remove()")
+        browser.driver.execute_script("$('#fixedban').remove()")
 
     @staticmethod
     def have_title(title):

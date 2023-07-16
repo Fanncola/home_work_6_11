@@ -1,5 +1,6 @@
 from pages.registration_page import RegistrationPage
 import allure
+from selene import browser
 
 
 @allure.title('Заполнение формы регистрации')

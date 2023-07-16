@@ -40,7 +40,6 @@ def setup_browser(request):
             "enableVideo": True
         }
     }
-
     login = os.getenv('LOGIN')
     password = os.getenv('PASSWORD')
 
