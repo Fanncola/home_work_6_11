@@ -1,18 +1,14 @@
-import pytest
-from selenium.webdriver.chrome.options import Options
-from selenium import webdriver
-from selene import browser, Browser, Config
-from dotenv import load_dotenv
 import os
+
+import pytest
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selene import Browser, Config
+from dotenv import load_dotenv
 
 from utils import attach
 
 DEFAULT_BROWSER_VERSION = "100.0"
-
-
-@pytest.fixture(scope='session', autouse=True)
-def load_env():
-    load_dotenv()
 
 
 def pytest_addoption(parser):
@@ -25,13 +21,6 @@ def pytest_addoption(parser):
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
-
-
-@pytest.fixture(autouse=True)
-def browser_setting():
-    browser.config.base_url = 'https://demoqa.com'
-    browser.config.window_width = 1440
-    browser.config.window_height = 776
 
 
 @pytest.fixture(scope='function')
@@ -48,6 +37,7 @@ def setup_browser(request):
         }
     }
     options.capabilities.update(selenoid_capabilities)
+
     login = os.getenv('LOGIN')
     password = os.getenv('PASSWORD')
 
@@ -58,9 +48,9 @@ def setup_browser(request):
     browser = Browser(Config(driver))
 
     yield browser
-    #
-    # attach.add_html(browser)
-    # attach.add_screenshot(browser)
-    # attach.add_logs(browser)
-    # attach.add_video(browser)
+
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    attach.add_video(browser)
     browser.quit()
