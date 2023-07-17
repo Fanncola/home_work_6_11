@@ -1,5 +1,6 @@
+import os
 from selene import browser, have, command
-
+from conftest import FILE_DIR
 
 class RegistrationPage:
 
@@ -54,6 +55,10 @@ class RegistrationPage:
     @staticmethod
     def fill_hobbies(hobbies):
         browser.element(f'//label[contains(text(), "{hobbies}")]').click()
+
+    @staticmethod
+    def upload_file(file_name):
+        browser.element('#uploadPicture').send_keys(os.path.join(FILE_DIR, f'{file_name}'))
 
     def fill_current_address(self, address):
         self.currentAddress.type(f'{address}')

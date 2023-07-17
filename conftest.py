@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from utils import attach
 
 DEFAULT_BROWSER_VERSION = "100.0"
+FILE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'resources'))
 
 
 def pytest_addoption(parser):

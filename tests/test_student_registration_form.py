@@ -1,6 +1,6 @@
 from pages.registration_page import RegistrationPage
 import allure
-from selene import browser
+
 
 
 @allure.title('Заполнение формы регистрации')
@@ -22,6 +22,8 @@ def test_filling_form(setup_browser):
         registration_page.fill_birthday('24', 'December', '1988')
         registration_page.fill_subjects('Computer Science')
         registration_page.fill_hobbies('Music')
+        registration_page.upload_file('image.png')
+
         registration_page.fill_current_address('Asia/Kolkata')
         registration_page.fill_state_and_city('NCR', 'Delhi')
 
@@ -37,7 +39,7 @@ def test_filling_form(setup_browser):
             ('Date of Birth', '24 December,1988'),
             ('Subjects', 'Computer Science'),
             ('Hobbies', 'Music'),
-            ('Picture', ''),
+            ('Picture', 'image.png'),
             ('Address', 'Asia/Kolkata'),
             ('State and City', 'NCR Delhi')
         )
